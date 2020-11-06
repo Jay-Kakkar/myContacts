@@ -1,9 +1,7 @@
 package com.example.mycontacts.contactstitleFragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,7 +21,15 @@ class contactsTitleFragment : Fragment() {
         binding.fab.setOnClickListener {
             this.findNavController().navigate(R.id.action_contactsTitleFragment2_to_contactsEditor)
         }
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_first,menu)
     }
 
 

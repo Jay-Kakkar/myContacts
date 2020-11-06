@@ -58,12 +58,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
         android:src="@drawable/round_phone_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edit_mobile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_firstname"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.151" />
 
     <EditText
         android:id="@+id/edit_mobile"
@@ -87,18 +88,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="371dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/round_email_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_phone"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
