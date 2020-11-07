@@ -19,7 +19,7 @@ class contactsTitleFragment : Fragment() {
 
         val binding: FragmentContactsTitleBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_contacts_title,container,false)
         binding.fab.setOnClickListener {
-            this.findNavController().navigate(R.id.action_contactsTitleFragment2_to_contactsEditor)
+            findNavController().navigate(R.id.action_contactsTitleFragment2_to_contactsEditor)
         }
         setHasOptionsMenu(true)
 
@@ -29,6 +29,7 @@ class contactsTitleFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+
         inflater.inflate(R.menu.menu_first,menu)
     }
 

@@ -7,19 +7,24 @@
     <fragment
         android:id="@+id/contactsTitleFragment2"
         android:name="com.example.mycontacts.contactstitleFragment.contactsTitleFragment"
-        android:label="fragment_contacts_title"
+        android:label="contacts"
         tools:layout="@layout/fragment_contacts_title" >
         <action
             android:id="@+id/action_contactsTitleFragment2_to_contactsEditor"
             app:destination="@id/contactsEditor" />
+        <action
+            android:id="@+id/action_contactsTitleFragment_to_contactsEditor"
+            app:destination="@id/contactsEditor"
+            />
     </fragment>
     <fragment
         android:id="@+id/contactsEditor"
         android:name="com.example.mycontacts.contactsEditor.contactsEditor"
-        android:label="contactsEditor"
+        android:label="contacts"
         tools:layout="@layout/fragment_contacts_editor">
         <action
             android:id="@+id/action_contactsEditor_to_contactsTitleFragment2"
-            app:destination="@id/contactsTitleFragment2" />
+            app:destination="@id/contactsTitleFragment2"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
