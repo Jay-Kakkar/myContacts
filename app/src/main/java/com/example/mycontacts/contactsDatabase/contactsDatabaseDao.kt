@@ -1,6 +1,7 @@
 package com.example.mycontacts.contactsDatabase
 
 import androidx.lifecycle.LiveData
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -24,6 +25,8 @@ interface contactsDatabaseDao {
     @Query("SELECT * FROM contacts_table ORDER BY name0 Asc LIMIT 1")
     suspend fun getCurrentContact(): contacts?
 
-    @Query("SELECT * from contacts_table WHERE contactsId = :key")
+    @Query("SELECT * FROM contacts_table WHERE contactsId = :key")
     fun getContactWithId(key: Long): LiveData<contacts>
+    @Delete
+    fun delete(sleepNight: LiveData<List<contacts>>):Int
 }

@@ -25,6 +25,14 @@ class contactsEditor : Fragment() {
     }
 
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.delete_Action->this.findNavController().navigate(R.id.action_contactsEditor_to_contactsTitleFragment2)
+            R.id.action_save->this.findNavController().navigate(R.id.action_contactsEditor_to_contactsTitleFragment2)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_editor, menu)
