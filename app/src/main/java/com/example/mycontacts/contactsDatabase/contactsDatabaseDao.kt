@@ -28,5 +28,5 @@ interface contactsDatabaseDao {
     @Query("SELECT * FROM contacts_table WHERE contactsId = :key")
     fun getContactWithId(key: Long): LiveData<contacts>
     @Delete
-    fun delete(sleepNight: LiveData<List<contacts>>):Int
+    fun delete(contact: contacts):Int
 }
