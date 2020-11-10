@@ -1,25 +1,23 @@
 package com.example.mycontacts.contactsEditor
 
 import android.app.Application
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import androidx.lifecycle.*
 
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.room.Database
-import com.example.mycontacts.contactsDatabase.contactDatabse
 import com.example.mycontacts.contactsDatabase.contacts
 import com.example.mycontacts.contactsDatabase.contactsDatabaseDao
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditorViewModel() :
+class EditorViewModel(dataSource: contactsDatabaseDao, application: Application) :
     ViewModel() {
+    private val fragment by lazy { contactsEditor() }
+
+
+    private lateinit var contacts: contacts
     private lateinit var database: contactsDatabaseDao
-    private var _firstNameEdit
-            = MutableLiveData<String>()
+    private var _firstNameEdit = MutableLiveData<String>()
+
     val firstNameEdit: LiveData<String>
         get() = _firstNameEdit
 
@@ -34,13 +32,24 @@ class EditorViewModel() :
     val phoneEdit: LiveData<String>
         get() = _phoneEdit
 
-    suspend fun insertInDatabase(contacts: contacts) {
 
+    fun initialise() {
+        _firstNameEdit.value = fragment.firstName
+        _lastNameEdit.value = fragment.lastName
+        _emailEdit.value = fragment.email
+        _phoneEdit.value = fragment.phone
+    }
+
+     fun insertInDatabase() {
+        initialise()
         contacts.firstName = _firstNameEdit.toString()
         contacts.lastName = _lastNameEdit.toString()
         contacts.email = _emailEdit.toString()
         contacts.phone = _phoneEdit.toString()
-        insert(contacts)
+        viewModelScope.launch {
+            insert(contacts)
+        }
+
 
     }
 

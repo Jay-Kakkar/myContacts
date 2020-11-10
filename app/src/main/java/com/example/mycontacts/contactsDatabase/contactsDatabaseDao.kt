@@ -1,11 +1,9 @@
 package com.example.mycontacts.contactsDatabase
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
+@Dao
 interface contactsDatabaseDao {
     @Insert
     suspend fun insert(contact: contacts)
