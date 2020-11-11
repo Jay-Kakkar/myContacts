@@ -5,20 +5,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 @Database(entities = [contacts::class], version = 1, exportSchema = false)
-abstract class contactDatabse:RoomDatabase() {
+abstract class contactDatabase:RoomDatabase() {
     abstract val contactsDatabaseDao:contactsDatabaseDao
     companion object{
         //volatile means value is not cached and changes will be used by all
         @Volatile
-        private var INSTANCE: contactDatabse? =null
-        fun getInstance(context: Context): contactDatabse? {
+        private var INSTANCE: contactDatabase? =null
+        fun getInstance(context: Context): contactDatabase {
             synchronized(this){
                 var instance= INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        contactDatabse::class.java,
-                        "sleep_history_database"
+                        contactDatabase::class.java,
+                        "contact_History_Database"
                     )
 
                         .fallbackToDestructiveMigration()
