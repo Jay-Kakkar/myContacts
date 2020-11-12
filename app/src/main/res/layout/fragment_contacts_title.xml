@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+<data>
+    <variable
+        name="binding"
+        type="com.example.mycontacts.contactstitleFragment.TitleViewModel" />
+</data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +21,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:textSize="16sp"
-                android:text="contacts"
+                android:text="@{binding.contactsString}"
                 />
         </ScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton

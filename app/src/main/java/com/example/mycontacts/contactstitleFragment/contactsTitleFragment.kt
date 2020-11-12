@@ -9,25 +9,39 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.mycontacts.R
+import com.example.mycontacts.contactsDatabase.contactDatabase
+import com.example.mycontacts.contactsEditor.EditorViewModelFactory
 import com.example.mycontacts.databinding.FragmentContactsTitleBinding
 import com.google.android.material.snackbar.Snackbar
 
 
 class contactsTitleFragment : Fragment() {
 
-private lateinit var viewModel:TitleViewModel
+    private lateinit var viewModel: TitleViewModel
+
+    private lateinit var binding: FragmentContactsTitleBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val application = requireNotNull(this.activity).application
+        val dataSource = contactDatabase.getInstance(application).contactsDatabaseDao
+
+        val viewModelFactory = TitleViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(TitleViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentContactsTitleBinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_contacts_title, container, false)
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_contactsTitleFragment2_to_contactsEditor)
         }
-         viewModel = ViewModelProvider(this)
-            .get(TitleViewModel::class.java)
+        binding.binding = viewModel
 
         setHasOptionsMenu(true)
 

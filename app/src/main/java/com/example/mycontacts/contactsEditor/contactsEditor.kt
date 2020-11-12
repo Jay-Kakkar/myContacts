@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.mycontacts.R
 import com.example.mycontacts.contactsDatabase.contactDatabase
+import com.example.mycontacts.contactsDatabase.contacts
 import com.example.mycontacts.databinding.FragmentContactsEditorBinding
 
 class contactsEditor() : Fragment() {
@@ -37,7 +38,6 @@ class contactsEditor() : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_contacts_editor, container, false)
 
-//        Log.i(this.toString(), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2${firstName}")
         setHasOptionsMenu(true)
         return binding.root
 
@@ -84,7 +84,10 @@ class contactsEditor() : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         if (firstName.isNotEmpty() && phone.isNotEmpty()) {
-            viewModel.insertInDatabase(firstName, lastName, email, phone)
+            val newContact=contacts()
+
+            viewModel.contactsString
+            viewModel.insertInDatabase(firstName, lastName, email, phone,newContact)
             Toast.makeText(
                 requireActivity(),
                 "Saved",

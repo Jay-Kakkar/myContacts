@@ -2,4 +2,12 @@
     <string name="app_name">MyContacts</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Output to TextView styled with a little HTML -->
+
+    <string name="title"><![CDATA[<h3>HERE IS YOUR contacts DATA</h3>]]></string>
+    <string name="first_name"><![CDATA[<b>First Name : </b>]]></string>
+    <string name="last_name"><![CDATA[<b>Last Name : </b>]]></string>
+    <string name="phone"><![CDATA[<b>Phone : </b>]]></string>
+    <string name="email"><![CDATA[<b>Email : </b>]]></string>
 </resources>

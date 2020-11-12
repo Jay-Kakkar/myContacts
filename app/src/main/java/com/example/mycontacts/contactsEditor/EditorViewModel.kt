@@ -1,7 +1,9 @@
 package com.example.mycontacts.contactsEditor
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import com.example.mycontacts.FormatContacts
 
 import com.example.mycontacts.contactsDatabase.contacts
 import com.example.mycontacts.contactsDatabase.contactsDatabaseDao
@@ -9,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditorViewModel( val databaseDao: contactsDatabaseDao,application: Application) :
+class EditorViewModel(val databaseDao: contactsDatabaseDao, application: Application) :
     AndroidViewModel(application) {
 //    private val fragment by lazy { contactsEditor() }
 
@@ -30,9 +32,34 @@ class EditorViewModel( val databaseDao: contactsDatabaseDao,application: Applica
 //    val phoneEdit: LiveData<String>
 //        get() = _phoneEdit
 //
+//init {
+//    intialiseContacts()
+//}
+//    private var _currentContact = MutableLiveData<contacts>()
+//
+//    private fun intialiseContacts() {
+//        viewModelScope.launch {
+//            _currentContact.value = getCurrentContactFromDatabase()
+//
+//        }
+//    }
+//
+//    private suspend fun getCurrentContactFromDatabase(): contacts? {
+//        var contacts = databaseDao.getCurrentContact()
+////        if (night?.endTimeMilli != night?.startTimeMilli) {
+////            night = null
+////        }
+//        return contacts
+//    }
 
-    fun insertInDatabase(firstName: String, lastName: String, email: String, phone: String) {
-        val contacts = contacts()
+    fun insertInDatabase(
+        firstName: String,
+        lastName: String,
+        email: String,
+        phone: String,
+        contacts: contacts
+    ) {
+
         contacts.firstName = firstName
         contacts.lastName = lastName
         contacts.email = email
@@ -43,6 +70,11 @@ class EditorViewModel( val databaseDao: contactsDatabaseDao,application: Applica
         }
 
 
+    }  var contacts = databaseDao.getAllContacts()
+
+    var contactsString = Transformations.map(contacts) { contacts ->
+        Log.e(this.toString(),"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        FormatContacts(contacts, application.resources)
     }
 
     suspend fun updateInDatabase(contacts: contacts, id: Long) {
