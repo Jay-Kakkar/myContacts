@@ -41,6 +41,7 @@ class contactsTitleFragment : Fragment() {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_contactsTitleFragment2_to_contactsEditor)
         }
+        binding.setLifecycleOwner(this)
         binding.binding = viewModel
 
         setHasOptionsMenu(true)

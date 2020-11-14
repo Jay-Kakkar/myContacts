@@ -12,16 +12,10 @@ class TitleViewModel(val dataSource: contactsDatabaseDao, application: Applicati
     AndroidViewModel(application) {
 
 
-    var contacts = dataSource.getAllContacts()
-
-    var contactsString = Transformations.map(contacts) { contacts ->
-        Log.e(this.toString(), "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        FormatContacts(contacts, application.resources)
+    private var current=dataSource.getAllContacts()
+    var contactsString=Transformations.map(current){
+        FormatContacts(it,application.resources)
     }
-
-    //    private var _firstName = MutableLiveData<String>()
-//    val firstName: LiveData<String>
-//        get() = _firstName
     private var viewModelJob = Job()
 
     private suspend fun clear() {

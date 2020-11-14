@@ -51,6 +51,7 @@ class EditorViewModel(val databaseDao: contactsDatabaseDao, application: Applica
 ////        }
 //        return contacts
 //    }
+var current=MutableLiveData<contacts>()
 
     fun insertInDatabase(
         firstName: String,
@@ -59,7 +60,7 @@ class EditorViewModel(val databaseDao: contactsDatabaseDao, application: Applica
         phone: String,
         contacts: contacts
     ) {
-
+current.value?.firstName=firstName
         contacts.firstName = firstName
         contacts.lastName = lastName
         contacts.email = email
@@ -67,14 +68,10 @@ class EditorViewModel(val databaseDao: contactsDatabaseDao, application: Applica
 
         viewModelScope.launch {
             insert(contacts)
+            Log.e(this.toString(),"##################${contacts.phone}")
         }
 
 
-    }  var contacts = databaseDao.getAllContacts()
-
-    var contactsString = Transformations.map(contacts) { contacts ->
-        Log.e(this.toString(),"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        FormatContacts(contacts, application.resources)
     }
 
     suspend fun updateInDatabase(contacts: contacts, id: Long) {

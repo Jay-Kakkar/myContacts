@@ -37,7 +37,7 @@ class contactsEditor() : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_contacts_editor, container, false)
-
+binding.setLifecycleOwner(this)
         setHasOptionsMenu(true)
         return binding.root
 
@@ -86,7 +86,6 @@ class contactsEditor() : Fragment() {
         if (firstName.isNotEmpty() && phone.isNotEmpty()) {
             val newContact=contacts()
 
-            viewModel.contactsString
             viewModel.insertInDatabase(firstName, lastName, email, phone,newContact)
             Toast.makeText(
                 requireActivity(),
