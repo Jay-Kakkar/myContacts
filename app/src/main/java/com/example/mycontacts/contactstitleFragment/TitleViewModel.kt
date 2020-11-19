@@ -14,7 +14,7 @@ class TitleViewModel(val dataSource: contactsDatabaseDao, application: Applicati
 
     private var current=dataSource.getAllContacts()
     var contactsString=Transformations.map(current){
-        FormatContacts(it,application.resources)
+        FormatContacts(it)
     }
     private var viewModelJob = Job()
 
