@@ -17,4 +17,5 @@ data class contacts(
     @ColumnInfo(name = "Email")
     var email:String?=null,
 
+    var name0: Char? = firstName?.get(0)
 )

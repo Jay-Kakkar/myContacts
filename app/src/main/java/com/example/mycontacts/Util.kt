@@ -1,7 +1,5 @@
 package com.example.mycontacts
 
-import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.os.Build
 
 import android.text.Html
@@ -9,7 +7,9 @@ import android.text.Spanned
 import android.util.Log
 import androidx.core.text.HtmlCompat
 import com.example.mycontacts.contactsDatabase.contacts
-
+fun formatedContactsData(firstName:String,lastName:String):String{
+    return "$firstName $lastName"
+}
 
 fun FormatContacts(contacts: List<contacts>): Spanned {
 

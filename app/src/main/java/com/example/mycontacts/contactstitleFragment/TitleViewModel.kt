@@ -12,7 +12,8 @@ class TitleViewModel(val dataSource: contactsDatabaseDao, application: Applicati
     AndroidViewModel(application) {
 
 
-    private var current=dataSource.getAllContacts()
+     var current=dataSource.getAllContacts()
+
     var contactsString=Transformations.map(current){
         FormatContacts(it)
     }

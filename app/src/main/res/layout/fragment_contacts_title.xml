@@ -2,17 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<!--<data>-->
-<!--    <variable-->
-<!--        name="titleViewModel"-->
-<!--        type="com.example.mycontacts.contactstitleFragment.TitleViewModel" />-->
-<!--</data>-->
+    <!--<data>-->
+    <!--    <variable-->
+    <!--        name="titleViewModel"-->
+    <!--        type="com.example.mycontacts.contactstitleFragment.TitleViewModel" />-->
+    <!--</data>-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            tools:listitem="@layout/list"
+            tools:itemCount="12"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
