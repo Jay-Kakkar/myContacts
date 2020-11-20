@@ -1,14 +1,22 @@
 package com.example.mycontacts.contactstitleFragment
 
+import android.R.attr.phoneNumber
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.mycontacts.R
 import com.example.mycontacts.contactsDatabase.contactDatabase
+import com.example.mycontacts.contactsDatabase.contacts
 import com.example.mycontacts.databinding.FragmentContactsTitleBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,11 +49,35 @@ class contactsTitleFragment : Fragment() {
         }
         //used for live data
         binding.lifecycleOwner = this
-        val adapter = contactsAdapter()
+
+        val adapter = contactsAdapter(contactsClickListener {
+//            val alertDialogBuilder = AlertDialog.Builder(context)
+//            alertDialogBuilder.setMessage("Do you want to call or edit")
+//            alertDialogBuilder.setPositiveButton(
+//                "EDIT",
+//                DialogInterface.OnClickListener { dialog, which ->
+                    this.findNavController()
+                        .navigate(R.id.action_contactsTitleFragment2_to_updateContacts)
+
+//                })
+
+
+//            alertDialogBuilder.setNegativeButton("No") { dialog, which ->
+//                startActivity(Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)))
+//
+//                Toast.makeText(context, "clicked No", Toast.LENGTH_LONG).show()
+//            }
+//            val alertDialog: AlertDialog = alertDialogBuilder.create()
+//            alertDialog.setCancelable(false)
+//            alertDialog.show()
+            Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
+
+        })
         binding.recycler.adapter = adapter
         viewModel.current.observe(viewLifecycleOwner, Observer {
             it.let {
-                adapter.data=it
+//                adapter.data=it
+                adapter.submitList(it)
             }
 
         })

@@ -17,11 +17,11 @@ interface contactsDatabaseDao {
     @Query("DELETE FROM contacts_table")
     suspend fun clear()
 
-    @Query("SELECT * FROM contacts_table ORDER BY name0 Asc")
+    @Query("SELECT * FROM contacts_table ORDER BY first_name Asc")
     fun getAllContacts(): LiveData<List<contacts>>
 
-    @Query("SELECT * FROM contacts_table ORDER BY name0 Asc LIMIT 1")
-    suspend fun getCurrentContact(): contacts?
+//    @Query("SELECT * FROM contacts_table ORDER BY FirstLetter Asc LIMIT 1")
+//    suspend fun getCurrentContact(): contacts?
 
     @Query("SELECT * FROM contacts_table WHERE contactsId = :key")
     fun getContactWithId(key: Long): LiveData<contacts>

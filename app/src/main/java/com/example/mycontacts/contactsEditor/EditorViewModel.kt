@@ -13,44 +13,7 @@ import kotlinx.coroutines.withContext
 
 class EditorViewModel(val databaseDao: contactsDatabaseDao, application: Application) :
     AndroidViewModel(application) {
-//    private val fragment by lazy { contactsEditor() }
 
-//
-//    private var _firstNameEdit = MutableLiveData<String>()
-//
-//    val firstNameEdit: LiveData<String>
-//        get() = _firstNameEdit
-//
-//    private var _lastNameEdit = MutableLiveData<String>()
-//    val lastNameEdit: LiveData<String>
-//        get() = _lastNameEdit
-//
-//    private var _emailEdit = MutableLiveData<String>()
-//    val emailEdit: LiveData<String>
-//        get() = _emailEdit
-//    private var _phoneEdit = MutableLiveData<String>()
-//    val phoneEdit: LiveData<String>
-//        get() = _phoneEdit
-//
-//init {
-//    intialiseContacts()
-//}
-//    private var _currentContact = MutableLiveData<contacts>()
-//
-//    private fun intialiseContacts() {
-//        viewModelScope.launch {
-//            _currentContact.value = getCurrentContactFromDatabase()
-//
-//        }
-//    }
-//
-//    private suspend fun getCurrentContactFromDatabase(): contacts? {
-//        var contacts = databaseDao.getCurrentContact()
-////        if (night?.endTimeMilli != night?.startTimeMilli) {
-////            night = null
-////        }
-//        return contacts
-//    }
 var current=MutableLiveData<contacts>()
 
     fun insertInDatabase(

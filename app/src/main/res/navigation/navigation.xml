@@ -13,9 +13,10 @@
             android:id="@+id/action_contactsTitleFragment2_to_contactsEditor"
             app:destination="@id/contactsEditor" />
         <action
-            android:id="@+id/action_contactsTitleFragment_to_contactsEditor"
-            app:destination="@id/contactsEditor"
-            />
+            android:id="@+id/action_contactsTitleFragment2_to_updateContacts"
+            app:destination="@id/updateContacts" />
+
+        />
     </fragment>
     <fragment
         android:id="@+id/contactsEditor"
@@ -26,5 +27,14 @@
             android:id="@+id/action_contactsEditor_to_contactsTitleFragment2"
             app:destination="@id/contactsTitleFragment2"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateContacts"
+        android:name="com.example.mycontacts.updateContacts.updateContacts"
+        android:label="updateContacts"
+        tools:layout="@layout/update">
+        <action
+            android:id="@+id/action_updateContacts_to_contactsTitleFragment2"
+            app:destination="@id/contactsTitleFragment2" />
     </fragment>
 </navigation>
