@@ -36,5 +36,9 @@
         <action
             android:id="@+id/action_updateContacts_to_contactsTitleFragment2"
             app:destination="@id/contactsTitleFragment2" />
+        <argument
+            android:name="contactsKey"
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 </navigation>

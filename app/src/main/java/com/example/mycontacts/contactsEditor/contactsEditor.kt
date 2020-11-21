@@ -45,15 +45,7 @@ binding.setLifecycleOwner(this)
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.delete_Action -> {
-                Toast.makeText(
-                    requireActivity(),
-                    "Deleted",
-                    Toast.LENGTH_SHORT
-                ).show()
-                this.findNavController()
-                    .navigate(R.id.action_contactsEditor_to_contactsTitleFragment2)
-            }
+
             R.id.action_save -> {
                 saveContacts()
 
