@@ -70,11 +70,11 @@ class contactsAdapter(val onClickListener: contactsClickListener) :
         }
     }
 
-}
-
-class contactsClickListener(val clickListener: (contactsId: Long) -> Unit) {
-    fun onClick(contacts: contacts) {
-        clickListener(contacts.contactsId)
+    class contactsClickListener(val clickListener: (contactsId: Long) -> Unit) {
+        fun onClick(contacts: contacts) {
+            clickListener(contacts.contactsId)
+        }
     }
+
 
 }

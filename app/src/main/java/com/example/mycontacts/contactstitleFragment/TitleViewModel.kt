@@ -12,6 +12,13 @@ class TitleViewModel(val dataSource: contactsDatabaseDao, application: Applicati
     AndroidViewModel(application) {
 
 
+    private val _navigateTotitleUpdate = MutableLiveData<Long>()
+    val navigateTotitleUpdate:LiveData<Long>
+        get() = _navigateTotitleUpdate
+
+    fun onContactClicked(id: Long) {
+        _navigateTotitleUpdate.value = id
+    }
      var current=dataSource.getAllContacts()
 
     var contactsString=Transformations.map(current){
@@ -22,7 +29,6 @@ class TitleViewModel(val dataSource: contactsDatabaseDao, application: Applicati
     private suspend fun clear() {
         withContext(Dispatchers.IO) {
             dataSource.clear()
-
         }
     }
 

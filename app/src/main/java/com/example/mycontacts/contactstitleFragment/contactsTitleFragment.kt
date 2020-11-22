@@ -50,7 +50,7 @@ class contactsTitleFragment : Fragment() {
         //used for live data
         binding.lifecycleOwner = this
 
-        val adapter = contactsAdapter(contactsClickListener {
+        val adapter = contactsAdapter(contactsAdapter.contactsClickListener {
 //            val alertDialogBuilder = AlertDialog.Builder(context)
 //            alertDialogBuilder.setMessage("Do you want to call or edit")
 //            alertDialogBuilder.setPositiveButton(

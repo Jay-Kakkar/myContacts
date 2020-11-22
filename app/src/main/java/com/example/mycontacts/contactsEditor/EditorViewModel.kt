@@ -37,30 +37,7 @@ current.value?.firstName=firstName
 
     }
 
-    suspend fun updateInDatabase(contacts: contacts, id: Long) {
-//        contacts.firstName = _firstNameEdit.toString()
-//        contacts.lastName = _lastNameEdit.toString()
-//        contacts.email = _emailEdit.toString()
-//        contacts.phone = _phoneEdit.toString()
-        update(contacts, id)
 
-    }
-
-
-    suspend fun deleteInDatabase(contacts: contacts, id: Long) {
-//        contacts.firstName = _firstNameEdit.toString()
-//        contacts.lastName = _lastNameEdit.toString()
-//        contacts.email = _emailEdit.toString()
-//        contacts.phone = _phoneEdit.toString()
-        delete(contacts, id)
-    }
-
-    private suspend fun update(contacts: contacts, id: Long) {
-        withContext(Dispatchers.IO) {
-            databaseDao.update(contacts)
-        }
-
-    }
 
     private suspend fun insert(contacts: contacts) {
         withContext(Dispatchers.IO) {
@@ -68,11 +45,6 @@ current.value?.firstName=firstName
         }
     }
 
-    private suspend fun delete(contacts: contacts, id: Long) {
-        withContext(Dispatchers.IO) {
-            databaseDao.delete(contacts)
-        }
-    }
 
 
 }
