@@ -5,8 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/update"
         android:layout_width="match_parent"
@@ -35,7 +33,6 @@
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:hint="First Name"
-
             android:inputType="textCapWords"
             app:layout_constraintBottom_toTopOf="@+id/lastname"
             app:layout_constraintEnd_toEndOf="parent"

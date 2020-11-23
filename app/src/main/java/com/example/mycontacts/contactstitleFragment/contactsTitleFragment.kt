@@ -56,8 +56,8 @@ class contactsTitleFragment : Fragment() {
 //            alertDialogBuilder.setPositiveButton(
 //                "EDIT",
 //                DialogInterface.OnClickListener { dialog, which ->
-                    this.findNavController()
-                        .navigate(R.id.action_contactsTitleFragment2_to_updateContacts)
+            this.findNavController()
+                .navigate(contactsTitleFragmentDirections.actionContactsTitleFragment2ToUpdateContacts(it))
 
 //                })
 

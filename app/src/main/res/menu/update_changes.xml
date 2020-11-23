@@ -13,5 +13,9 @@
         android:icon="@drawable/baseline_done_white_24"
         android:title="save"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/call"
+        android:icon="@drawable/round_phone_black_24"
+        app:showAsAction="always"/>
 
 </menu>
