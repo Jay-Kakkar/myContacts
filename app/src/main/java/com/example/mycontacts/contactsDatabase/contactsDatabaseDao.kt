@@ -11,6 +11,16 @@ interface contactsDatabaseDao {
     @Update
     suspend fun update(contact: contacts)
 
+    @Query("UPDATE contacts_table SET First_Name =:first,Last_Name = :last,email =:email,phone =:phone WHERE contactsId=:contactsKey")
+    suspend fun updateSingalContact(
+
+        first: String,
+        last: String,
+        email: String,
+        phone: String,
+        contactsKey: Long
+    )
+
     @Query("SELECT * FROM contacts_table WHERE contactsId=:key")
     suspend fun get(key: Long): contacts?
 
@@ -25,9 +35,11 @@ interface contactsDatabaseDao {
 
     @Query("SELECT * FROM contacts_table WHERE contactsId = :key")
     fun getContactWithId(key: Long): LiveData<contacts>
+
     @Delete
-    fun delete(contact: contacts):Int
+    fun delete(contact: contacts): Int
+
     @Query("DELETE FROM contacts_table WHERE contactsId = :key")
-     fun delete(key: Long)
+    fun delete(key: Long)
 
 }

@@ -15,7 +15,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/call"
-        android:icon="@drawable/round_phone_black_24"
+        android:icon="@drawable/baseline_call_white_24"
         app:showAsAction="always"/>
 
 </menu>

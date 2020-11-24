@@ -30,9 +30,9 @@ class updateViewModel(
 //        Log.e(this.toString(), "^^^^^^^^^^^^^^$contact")
 //    }
 
-    suspend fun update(contacts: contacts) {
+    suspend fun update(firstName: String,lastName: String,Email: String,phoneNumber: String,contactsKey: Long) {
         withContext(Dispatchers.IO) {
-            dataSource.update(contacts)
+            dataSource.updateSingalContact(firstName,lastName,Email,phoneNumber,contactsKey)
         }
     }
 
@@ -87,6 +87,15 @@ class updateViewModel(
         viewModelJob.cancel()
     }
 
+    fun updateInDatabase(firstName: String, lastName: String, phoneNumber: String, Email: String) {
+        first.value = firstName
+        last.value = lastName
+        phone.value = phoneNumber
+        email.value = Email
+        viewModelScope.launch {
+            update(firstName,lastName,Email,phoneNumber,contactsKey)
+        }
+    }
 
 }
 

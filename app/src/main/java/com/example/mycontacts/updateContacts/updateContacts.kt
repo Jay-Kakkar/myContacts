@@ -1,8 +1,6 @@
 package com.example.mycontacts.updateContacts
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
-import android.app.ActionBar.DISPLAY_HOME_AS_UP
 import android.app.AlertDialog
 import android.app.Application
 import android.content.DialogInterface
@@ -11,9 +9,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.View.OnTouchListener
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.app.NavUtils
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,6 +22,7 @@ import com.example.mycontacts.R
 import com.example.mycontacts.contactsDatabase.contactDatabase
 import com.example.mycontacts.contactsDatabase.contactsDatabaseDao
 import com.example.mycontacts.databinding.UpdateBinding
+import kotlinx.android.synthetic.main.update.view.*
 
 class updateContacts : Fragment() {
     private lateinit var application: Application
@@ -31,30 +31,38 @@ class updateContacts : Fragment() {
     private lateinit var viewModel: updateViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         application = requireNotNull(this.activity).application
         dataSource = contactDatabase.getInstance(application).contactsDatabaseDao
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // in here you can do logic when backPress is clicked
-                val alertDialogBuilder = AlertDialog.Builder(context)
-                alertDialogBuilder.setMessage("Discard changes")
-                alertDialogBuilder.setPositiveButton(
-                    "NO",
-                    DialogInterface.OnClickListener { dialog, which ->
+                if (viewModel._first.value != (binding.firstname.text.toString()) ||
+                    viewModel._last.value != binding.lastname.text.toString()||
+                    viewModel._email.value != binding.email.text.toString()||
+                    viewModel._phone.value != binding.mobile.text.toString()   ) {
+                    val alertDialogBuilder = AlertDialog.Builder(context)
+                    alertDialogBuilder.setMessage("Discard changes")
+                    alertDialogBuilder.setPositiveButton(
+                        "NO",
+                        DialogInterface.OnClickListener { dialog, which ->
 
-                    })
-                alertDialogBuilder.setNegativeButton(
-                    "YES",
-                    DialogInterface.OnClickListener { dialog, which ->
-                        findNavController().navigate(updateContactsDirections.actionUpdateContactsToContactsTitleFragment2())
-                    })
-                val alertDialog: AlertDialog = alertDialogBuilder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+                        })
+                    alertDialogBuilder.setNegativeButton(
+                        "YES",
+                        DialogInterface.OnClickListener { dialog, which ->
+                            findNavController().navigate(updateContactsDirections.actionUpdateContactsToContactsTitleFragment2())
+                        })
+                    val alertDialog: AlertDialog = alertDialogBuilder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                }
+                else{
+                    findNavController().navigate(updateContactsDirections.actionUpdateContactsToContactsTitleFragment2())
+                }
             }
 
         })
-
 
     }
 
@@ -96,30 +104,30 @@ class updateContacts : Fragment() {
         })
         binding.firstname.freezesText
         setHasOptionsMenu(true)
-
         return binding.root
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            android.R.id.home -> {
-                val alertDialogBuilder = AlertDialog.Builder(context)
-                alertDialogBuilder.setMessage("Discard changes")
-                alertDialogBuilder.setPositiveButton(
-                    "NO",
-                    DialogInterface.OnClickListener { dialog, which ->
-
-                    })
-                alertDialogBuilder.setNegativeButton(
-                    "YES",
-                    DialogInterface.OnClickListener { dialog, which ->
-                    })
-                val alertDialog: AlertDialog = alertDialogBuilder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
-            }
+//            android.R.id.home -> {
+//
+//
+//                val alertDialogBuilder = AlertDialog.Builder(context)
+//                alertDialogBuilder.setMessage("Discard changes")
+//                alertDialogBuilder.setPositiveButton(
+//                    "NO",
+//                    DialogInterface.OnClickListener { dialog, which ->
+//
+//                    })
+//                alertDialogBuilder.setNegativeButton(
+//                    "YES",
+//                    DialogInterface.OnClickListener { dialog, which ->
+//                    })
+//                val alertDialog: AlertDialog = alertDialogBuilder.create()
+//                alertDialog.setCancelable(false)
+//                alertDialog.show()
+//            }
             R.id.call -> startActivity(
                 Intent(
                     Intent.ACTION_DIAL, Uri.fromParts(
@@ -129,7 +137,32 @@ class updateContacts : Fragment() {
                 )
             )
 
-//            R.id.save->updateContactsData()
+            R.id.save -> {
+                if (viewModel._first.value != (binding.firstname.text.toString()) ||
+                    viewModel._last.value != binding.lastname.text.toString()||
+                    viewModel._email.value != binding.email.text.toString()||
+                    viewModel._phone.value != binding.mobile.text.toString()   ) {
+
+                    val alertDialogBuilder = AlertDialog.Builder(context)
+                    alertDialogBuilder.setMessage("Save changes")
+                    alertDialogBuilder.setPositiveButton(
+                        "NO",
+                        DialogInterface.OnClickListener { dialog, which ->
+
+                        })
+                    alertDialogBuilder.setNegativeButton(
+                        "YES",
+                        DialogInterface.OnClickListener { dialog, which ->
+                            updateContactsData()
+
+                        })
+                    val alertDialog: AlertDialog = alertDialogBuilder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+                } else {
+                    findNavController().navigate(updateContactsDirections.actionUpdateContactsToContactsTitleFragment2())
+                }
+            }
             R.id.delete -> {
                 val alertDialogBuilder = AlertDialog.Builder(context)
                 alertDialogBuilder.setMessage("Do you want to delete")
@@ -157,15 +190,17 @@ class updateContacts : Fragment() {
 
     private fun updateContactsData() {
         var firstName = binding.firstname.text.toString()
+        Log.e(this.toString(), "%%%%%%%%%%%%$firstName")
         var lastName = binding.lastname.text.toString()
         var email = binding.email.text.toString()
         var phone = binding.mobile.text.toString()
-        if (firstName.isNotEmpty())
+        if (firstName.isEmpty())
             Toast.makeText(context, "first name cannot be empty", Toast.LENGTH_SHORT).show()
-        if (phone.isNotEmpty())
+        if (phone.isEmpty())
             Toast.makeText(context, "phone number can't be empty", Toast.LENGTH_SHORT).show()
         if (firstName.isNotEmpty() && phone.isNotEmpty()) {
-//            viewModel.updateInDatabase(firstName,lastName,phone,email)
+            viewModel.updateInDatabase(firstName, lastName, phone, email)
+            findNavController().navigate(updateContactsDirections.actionUpdateContactsToContactsTitleFragment2())
         }
     }
 

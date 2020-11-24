@@ -39,7 +39,7 @@
             app:launchSingleTop="false"
             app:popUpTo="@id/updateContacts"
 
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
         <argument
             android:name="contactsKey"
             app:argType="long" />

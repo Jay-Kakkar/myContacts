@@ -51,26 +51,10 @@ class contactsTitleFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = contactsAdapter(contactsAdapter.contactsClickListener {
-//            val alertDialogBuilder = AlertDialog.Builder(context)
-//            alertDialogBuilder.setMessage("Do you want to call or edit")
-//            alertDialogBuilder.setPositiveButton(
-//                "EDIT",
-//                DialogInterface.OnClickListener { dialog, which ->
+
             this.findNavController()
                 .navigate(contactsTitleFragmentDirections.actionContactsTitleFragment2ToUpdateContacts(it))
 
-//                })
-
-
-//            alertDialogBuilder.setNegativeButton("No") { dialog, which ->
-//                startActivity(Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)))
-//
-//                Toast.makeText(context, "clicked No", Toast.LENGTH_LONG).show()
-//            }
-//            val alertDialog: AlertDialog = alertDialogBuilder.create()
-//            alertDialog.setCancelable(false)
-//            alertDialog.show()
-            Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
 
         })
         binding.recycler.adapter = adapter
